@@ -1,0 +1,41 @@
+###Get All Available Bikes
+GET http://localhost:3000/bikes
+Content-Type: application/json
+
+
+
+###Get Details of a Single Bike
+GET http://localhost:3000/bikes/:id
+Content-Type: application/json
+
+
+###Add a New Bike
+POST http://localhost:3000/bikes
+Content-Type: application/json
+
+{
+  "model": "Mountain Bike",
+  "status": "AVAILABLE",
+  "image": "image-url"
+}
+
+
+###Update Bike Information
+PUT http://localhost:3000/bikes/:id
+Content-Type: application/json
+
+{
+  "model": "Road Bike",
+  "status": "BOOKED",
+  "image": "new-image-url"
+}
+
+
+###Soft Delete a Bike
+PUT http://localhost:3000/bikes/:id/soft-delete
+
+
+###Delete a Bike
+DELETE http://localhost:3000/bikes/:id
+
+

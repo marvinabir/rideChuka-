@@ -1,0 +1,30 @@
+### Get all reviews for an event
+GET http://localhost:3000/api/reviews/:eventId
+Content-Type: application/json
+
+
+### Add a review for an event
+POST http://localhost:3000/api/reviews
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "eventId": 2,
+  "rating": 5,
+  "comment": "Amazing event!"
+}
+
+
+### Update a review
+PUT http://localhost:3000/api/reviews/:reviewId
+Content-Type: application/json
+
+{
+  "rating": 4,
+  "comment": "Great event but could improve."
+}
+
+
+### Delete a review
+DELETE http://localhost:3000/api/reviews/:reviewId
+Content-Type: application/json

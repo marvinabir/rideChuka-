@@ -1,0 +1,17 @@
+### Get ticket details by booking ID
+GET http://localhost:3000/api/tickets/:bookingId
+Content-Type: application/json
+
+
+### Generate a new ticket after booking confirmation
+POST http://localhost:3000/api/tickets/:bookingId
+Content-Type: application/json
+
+{
+  "details": "Bike: Mountain Bike, Model XYZ"
+}
+
+
+### Get all tickets in a booking
+GET http://localhost:3000/api/tickets
+Content-Type: application/json
