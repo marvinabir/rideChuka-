@@ -1,16 +1,19 @@
 import { Router } from 'express';
-import { getPaymentHistoryForUserController, processNewPaymentController, getPaymentStatusController } from '../controllers/payment.controller';
-
+import {
+  getPaymentHistoryForUserController,
+  triggerMpesaPaymentController,
+  checkPaymentStatusController,
+} from '../controllers/payment.controller';
 
 const router = Router();
 
 // Get all payment history for a user
 router.get('/payments/history/:userId', getPaymentHistoryForUserController);
 
-// Process a new payment
-router.post('/payments/:userId', processNewPaymentController);
+// Trigger M-Pesa Payment
+router.post('/payments/mpesa/:userId', triggerMpesaPaymentController);
 
-// Get payment status
-router.get('/payments/status/:paymentId', getPaymentStatusController);
+// Check Payment Status
+router.get('/payments/status/:invoiceId', checkPaymentStatusController);
 
 export default router;

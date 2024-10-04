@@ -1,15 +1,12 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 import {
   getPaymentHistoryForUser,
-  processNewPayment,
-  getPaymentStatus,
-} from "../services/payment.service";
+  triggerMpesaPayment,
+  checkPaymentStatus,
+} from '../services/payment.service';
 
 // Get all payment history for a user
-export const getPaymentHistoryForUserController = async (
-  req: Request,
-  res: Response
-) => {
+export const getPaymentHistoryForUserController = async (req: Request, res: Response) => {
   const { userId } = req.params;
   try {
     const payments = await getPaymentHistoryForUser(Number(userId));
@@ -19,29 +16,23 @@ export const getPaymentHistoryForUserController = async (
   }
 };
 
-// Process a new payment
-export const processNewPaymentController = async (
-  req: Request,
-  res: Response
-) => {
+// Trigger M-Pesa Payment
+export const triggerMpesaPaymentController = async (req: Request, res: Response) => {
   const { userId } = req.params;
-  const { amount } = req.body;
+  const { amount, phone_number } = req.body;
   try {
-    const newPayment = await processNewPayment(Number(userId), Number(amount));
-    res.status(201).json(newPayment);
+    const paymentResponse = await triggerMpesaPayment(Number(userId), Number(amount), phone_number);
+    res.status(201).json(paymentResponse);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
   }
 };
 
-// Get payment status
-export const getPaymentStatusController = async (
-  req: Request,
-  res: Response
-) => {
-  const { paymentId } = req.params;
+// Check Payment Status
+export const checkPaymentStatusController = async (req: Request, res: Response) => {
+  const { invoiceId } = req.params;
   try {
-    const status = await getPaymentStatus(Number(paymentId));
+    const status = await checkPaymentStatus(invoiceId);
     res.status(200).json(status);
   } catch (error: any) {
     res.status(500).json({ error: error.message });

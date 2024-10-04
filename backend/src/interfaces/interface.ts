@@ -78,9 +78,12 @@ export interface User {
     user: User;
     amount: number;
     status: PaymentStatus;
+    invoiceId?: string; // For IntaSend invoice ID tracking
+    apiRef?: string;    // Optional reference for your API tracking
     createdAt: Date;
     updatedAt: Date;
   }
+  
 
 
 
