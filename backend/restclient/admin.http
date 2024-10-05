@@ -1,17 +1,29 @@
+### Register new admin
+POST http://localhost:3000/api/admin/register
+Content-Type: application/json
+
+{
+  "name": "Admin Jane",
+  "email": "adminjane@example.com",
+  "password": "secureadminpassword",
+  "phone": "9876543210"
+}
+
+
 ### Get all users
 GET http://localhost:3000/api/admin/users
 Content-Type: application/json
 
 ### Get details of a specific user
-GET http://localhost:3000/api/admin/users/:userId
+GET http://localhost:3000/api/admin/users/2
 Content-Type: application/json
 
 ### Activate a user
-PUT http://localhost:3000/api/admin/users/:userId/activate
+PUT http://localhost:3000/api/admin/users/1/activate
 Content-Type: application/json
 
 ### Deactivate a user
-PUT http://localhost:3000/api/admin/users/:userId/deactivate
+PUT http://localhost:3000/api/admin/users/1/deactivate
 Content-Type: application/json
 
 ### View all bookings

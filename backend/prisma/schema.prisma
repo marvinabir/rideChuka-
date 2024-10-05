@@ -11,67 +11,68 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
-  name      String
-  email     String   @unique
-  password  String
-  phone     String?  // Optional phone number
+  id             Int       @id @default(autoincrement())
+  name           String
+  email          String    @unique
+  password       String
+  phone          String? // Optional phone number
   profilePicture String? // Optional profile picture
-  role      Role     @default(USER)
-  bookings  Booking[]
-  reviews   Review[]
-  payments  Payment[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  role           Role      @default(USER)
+  bookings       Booking[]
+  reviews        Review[]
+  payments       Payment[]
+  resetCode      String? // Add this for reset password feature
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
 }
 
 model Bike {
-  id        Int      @id @default(autoincrement())
+  id        Int        @id @default(autoincrement())
   model     String
   status    BikeStatus @default(AVAILABLE)
-  image     String?   // Image of the bike
+  image     String? // Image of the bike
   bookings  Booking[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
 }
 
 model Event {
-  id        Int      @id @default(autoincrement())
-  title     String
+  id          Int       @id @default(autoincrement())
+  title       String
   description String
-  date      String
-  time      String
-  location  String
-  capacity  Int
-  image     String?  // Image for the event
-  bookings  Booking[]
-  reviews   Review[]
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  date        String
+  time        String
+  location    String
+  capacity    Int
+  image       String? // Image for the event
+  bookings    Booking[]
+  reviews     Review[]
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 }
 
 model Booking {
-  id         Int      @id @default(autoincrement())
-  userId     Int
-  user       User     @relation(fields: [userId], references: [id])
-  bikeId     Int?     // Bike booking is optional
-  bike       Bike?    @relation(fields: [bikeId], references: [id])
-  eventId    Int?     // Event booking is optional
-  event      Event?   @relation(fields: [eventId], references: [id])
-  status     BookingStatus @default(PENDING)
-  ticket     Ticket?  // Ticket generated after booking
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
+  id        Int           @id @default(autoincrement())
+  userId    Int
+  user      User          @relation(fields: [userId], references: [id])
+  bikeId    Int? // Bike booking is optional
+  bike      Bike?         @relation(fields: [bikeId], references: [id])
+  eventId   Int? // Event booking is optional
+  event     Event?        @relation(fields: [eventId], references: [id])
+  status    BookingStatus @default(PENDING)
+  ticket    Ticket? // Ticket generated after booking
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
 }
 
 model Ticket {
-  id          Int      @id @default(autoincrement())
-  bookingId   Int      @unique
-  booking     Booking  @relation(fields: [bookingId], references: [id])
-  ticketNumber String  @unique
-  date        String
-  details     String   // Event/bike details
-  createdAt   DateTime @default(now())
+  id           Int      @id @default(autoincrement())
+  bookingId    Int      @unique
+  booking      Booking  @relation(fields: [bookingId], references: [id])
+  ticketNumber String   @unique
+  date         String
+  details      String // Event/bike details
+  createdAt    DateTime @default(now())
 }
 
 model Review {
@@ -80,7 +81,7 @@ model Review {
   user      User     @relation(fields: [userId], references: [id])
   eventId   Int
   event     Event    @relation(fields: [eventId], references: [id])
-  rating    Int      // Rating from 1 to 5
+  rating    Int // Rating from 1 to 5
   comment   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -92,7 +93,7 @@ model Payment {
   user      User          @relation(fields: [userId], references: [id])
   amount    Float
   status    PaymentStatus
-  invoiceId String?       // To track the IntaSend invoice_id
+  invoiceId String? // To track the IntaSend invoice_id
   createdAt DateTime      @default(now())
   updatedAt DateTime      @updatedAt
 }

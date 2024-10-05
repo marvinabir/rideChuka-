@@ -8,6 +8,7 @@ import ticketRoutes from './routes/ticket.routes';
 import reviewRoutes from './routes/review.routes';
 import adminRoutes from './routes/admin.routes';
 import paymentRoutes from './routes/payment.routes';
+import userRoutes from './routes/user.routes';
 
 dotenv.config();
 const app = express();
@@ -38,6 +39,7 @@ app.use('/api', ticketRoutes);
 app.use('/api', reviewRoutes);
 app.use('/api', adminRoutes);
 app.use('/api', paymentRoutes);
+app.use('/api', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

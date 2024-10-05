@@ -1,8 +1,12 @@
 import { Router } from 'express';
-import { getAllUsersController, getUserByIdController, activateUserController, deactivateUserController, getAllPaymentsController } from '../controllers/admin.controller';
+import { getAllUsersController, getUserByIdController, activateUserController, deactivateUserController, getAllPaymentsController, registerAdminController } from '../controllers/admin.controller';
 import { getAllBookingsController } from '../controllers/booking.controller';
 
 const router = Router();
+
+// Register admin
+router.post('/admin/register', registerAdminController);
+
 
 // Get all users
 router.get('/admin/users', getAllUsersController);

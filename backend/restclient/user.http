@@ -1,0 +1,76 @@
+### Register new user
+POST http://localhost:3000/api/users/register
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "janedoe@example.com",
+  "password": "securepassword",
+  "phone": "9876543210"
+}
+
+
+
+### Login user
+POST http://localhost:3000/api/users/login
+Content-Type: application/json
+
+{
+  "email": "janedoe@example.com",
+  "password": "securepassword"
+}
+
+
+
+### Get user profile
+GET http://localhost:3000/api/users/1
+Content-Type: application/json
+
+
+
+### Update user profile
+PUT http://localhost:3000/api/users/1
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "phone": "9983711309",
+  "profilePicture": "https://example.com/image.jpg"
+}
+
+
+
+### Send reset password code (via email)
+POST http://localhost:3000/api/users/reset-password/code
+Content-Type: application/json
+
+{
+  "email": "janedoe@example.com"
+}
+
+
+### Reset password
+POST http://localhost:3000/api/users/reset-password
+Content-Type: application/json
+
+{
+  "email": "janedoe@example.com",
+  "resetCode": "123456",
+  "newPassword": "newsecurepassword"
+}
+
+
+
+
+### Get all user bookings (events and bikes)
+GET http://localhost:3000/api/users/1/bookings
+Content-Type: application/json
+
+### Get all user reviews
+GET http://localhost:3000/api/users/1/reviews
+Content-Type: application/json
+
+### Deactivate user account
+DELETE http://localhost:3000/api/users/:userId
+Content-Type: application/json
+

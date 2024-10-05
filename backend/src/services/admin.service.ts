@@ -1,6 +1,21 @@
 import { PrismaClient } from '@prisma/client';
+import bcrypt from 'bcrypt';
+
 
 const prisma = new PrismaClient();
+
+// Register new admin
+export const registerAdmin = async (data: { name: string; email: string; password: string; phone?: string }) => {
+  const hashedPassword = await bcrypt.hash(data.password, 10);
+  return await prisma.user.create({
+    data: {
+      ...data,
+      password: hashedPassword,
+      role: 'ADMIN',
+    },
+  });
+};
+
 
 // Get all users
 export const getAllUsers = async () => {

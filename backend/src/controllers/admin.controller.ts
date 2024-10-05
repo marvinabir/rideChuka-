@@ -1,6 +1,16 @@
 import { Request, Response } from 'express';
-import { getAllUsers, getUserById, activateUser, deactivateUser, getAllPayments } from '../services/admin.service';
+import { getAllUsers, getUserById, activateUser, deactivateUser, getAllPayments, registerAdmin } from '../services/admin.service';
 import { getAllBookings } from '../services/booking.service';
+
+export const registerAdminController = async (req: Request, res: Response) => {
+  const { name, email, password, phone } = req.body;
+  try {
+    const newAdmin = await registerAdmin({ name, email, password, phone });
+    res.status(201).json(newAdmin);
+  } catch (error: any) {
+    res.status(500).json({ error: error.message });
+  }
+};
 
 
 // Get all users

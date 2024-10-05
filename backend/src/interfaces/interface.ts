@@ -9,6 +9,7 @@ export interface User {
     bookings: Booking[];
     reviews: Review[];
     payments: Payment[];
+    resetCode?: string;  // Add this for reset password feature
     createdAt: Date;
     updatedAt: Date;
   }

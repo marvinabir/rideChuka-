@@ -20,7 +20,7 @@ Content-Type: application/json
 
 
 ### Update booking status
-PUT http://localhost:3000/api/bookings/:id
+PUT http://localhost:3000/api/bookings/4
 Content-Type: application/json
 
 {
@@ -29,5 +29,5 @@ Content-Type: application/json
 
 
 ### Cancel a booking
-PUT http://localhost:3000/api/bookings/:id/cancel
+PUT http://localhost:3000/api/bookings/4/cancel
 Content-Type: application/json

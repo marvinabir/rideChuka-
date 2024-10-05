@@ -19,6 +19,7 @@ CREATE TABLE "User" (
     "phone" TEXT,
     "profilePicture" TEXT,
     "role" "Role" NOT NULL DEFAULT 'USER',
+    "resetCode" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -96,7 +97,8 @@ CREATE TABLE "Payment" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
-    "status" "PaymentStatus" NOT NULL DEFAULT 'PENDING',
+    "status" "PaymentStatus" NOT NULL,
+    "invoiceId" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
