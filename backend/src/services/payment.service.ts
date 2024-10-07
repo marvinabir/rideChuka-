@@ -1,5 +1,6 @@
-import { PrismaClient, PaymentStatus } from '@prisma/client';
-const prisma = new PrismaClient();
+import prisma from "../config/database";
+import { PaymentStatus } from "../interfaces/interface";
+
 const IntaSend = require('intasend-node');
 
 // Initialize IntaSend
@@ -10,7 +11,7 @@ let intasend = new IntaSend(
 );
 
 // Get all payment history for a user
-export const getPaymentHistoryForUser = async (userId: number) => {
+export const getPaymentHistoryForUser = async (userId: string) => {
   return await prisma.payment.findMany({
     where: { userId },
     include: { user: true },
@@ -18,7 +19,7 @@ export const getPaymentHistoryForUser = async (userId: number) => {
 };
 
 // Trigger M-Pesa STK Push Payment
-export const triggerMpesaPayment = async (userId: number, amount: number, phone_number: string) => {
+export const triggerMpesaPayment = async (userId: string, amount: number, phone_number: string) => {
   try {
     const user = await prisma.user.findUnique({ where: { id: userId } });
 

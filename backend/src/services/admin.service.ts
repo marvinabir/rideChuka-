@@ -1,8 +1,7 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from "../config/database";
 import bcrypt from 'bcrypt';
 
 
-const prisma = new PrismaClient();
 
 // Register new admin
 export const registerAdmin = async (data: { name: string; email: string; password: string; phone?: string }) => {
@@ -25,7 +24,7 @@ export const getAllUsers = async () => {
 };
 
 // Get details of a specific user
-export const getUserById = async (userId: number) => {
+export const getUserById = async (userId: string) => {
   return await prisma.user.findUnique({
     where: { id: userId },
     include: { bookings: true, payments: true },
@@ -33,7 +32,7 @@ export const getUserById = async (userId: number) => {
 };
 
 // Activate a user
-export const activateUser = async (userId: number) => {
+export const activateUser = async (userId: string) => {
   return await prisma.user.update({
     where: { id: userId },
     data: { role: 'USER' }, // Assuming deactivated users have a role of a different type
@@ -41,7 +40,7 @@ export const activateUser = async (userId: number) => {
 };
 
 // Deactivate a user
-export const deactivateUser = async (userId: number) => {
+export const deactivateUser = async (userId: string) => {
   return await prisma.user.update({
     where: { id: userId },
     data: { role: 'ADMIN' }, // Admin has control to deactivate the user by changing the role

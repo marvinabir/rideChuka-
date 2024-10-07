@@ -1,23 +1,24 @@
 export interface User {
-    id: number;
-    name: string;
-    email: string;
-    password: string;
-    phone?: string; // Optional phone number
-    profilePicture?: string; // Optional profile picture
-    role: Role;
-    bookings: Booking[];
-    reviews: Review[];
-    payments: Payment[];
-    resetCode?: string;  // Add this for reset password feature
-    createdAt: Date;
-    updatedAt: Date;
-  }
+  id: string; // UUID string
+  name: string;
+  email: string;
+  password: string;
+  phone?: string;
+  profilePicture?: string;
+  role: Role;
+  bookings: Booking[];
+  reviews: Review[];
+  payments: Payment[];
+  resetCode?: string; // For password reset
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 
   
 
   export interface Bike {
-    id: number;
+    id: string; // UUID string
     model: string;
     status?: BikeStatus;
     image?: string; 
@@ -29,7 +30,7 @@ export interface User {
 
 
   export interface Event {
-    id: number;
+    id: string; // UUID string
     title: string;
     description: string;
     date: string;
@@ -46,10 +47,10 @@ export interface User {
   
 
   export interface Booking {
-    id: number;
-    userId: number;
+    id: string; // UUID string
+    userId: string;
     user: User;
-    bikeId?: number; // Optional bike booking
+    bikeId?: string; // Optional bike booking
     bike?: Bike;
     eventId?: number; // Optional event booking
     event?: Event;
@@ -62,8 +63,8 @@ export interface User {
   
 
   export interface Ticket {
-    id: number;
-    bookingId: number;
+    id: string;
+    bookingId: string;
     booking: Booking;
     ticketNumber: string;
     date: string;
@@ -74,8 +75,8 @@ export interface User {
   
 
   export interface Payment {
-    id: number;
-    userId: number;
+    id: string;
+    userId: string;
     user: User;
     amount: number;
     status: PaymentStatus;
@@ -89,10 +90,10 @@ export interface User {
 
 
   export interface Review {
-    id: number;
-    userId: number;
+    id: string;
+    userId: string;
     user: User;
-    eventId: number;
+    eventId: string;
     event: Event;
     rating: number; // Rating from 1 to 5
     comment?: string; // Optional comment
@@ -103,8 +104,8 @@ export interface User {
 
 
   export interface Notification {
-    id: number;
-    userId: number;
+    id: string;
+    userId: string;
     user: User;
     content: string;
     createdAt: Date;

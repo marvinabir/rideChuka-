@@ -1,45 +1,21 @@
-import { Router } from 'express';
-import { getUserProfileController, updateUserProfileController, getUserBookingsController, getUserReviewsController, deactivateUserAccountController, loginUserController, registerUserController } from '../controllers/user.controller';
+import express from 'express';
+import { registerUserController, loginUserController, getUserProfileController, updateUserProfileController, getUserBookingsController, getUserReviewsController, deactivateUserAccountController } from '../controllers/user.controller';
 
+const router = express.Router();
 
-const router = Router();
+// User registration and login routes
+router.post('/register', registerUserController);
+router.post('/login', loginUserController);
 
-// Get user profile
-router.get('/users/:userId', getUserProfileController);
+// User profile routes
+router.get('/:userId/profile', getUserProfileController);
+router.put('/:userId/profile', updateUserProfileController);
 
-// Update user profile (name, phone, profile picture)
-router.put('/users/:userId', updateUserProfileController);
-
-// Get all user bookings (events and bikes)
-router.get('/users/:userId/bookings', getUserBookingsController);
-
-// Get all user reviews
-router.get('/users/:userId/reviews', getUserReviewsController);
+// User bookings and reviews routes
+router.get('/:userId/bookings', getUserBookingsController);
+router.get('/:userId/reviews', getUserReviewsController);
 
 // Deactivate user account
-router.delete('/users/:userId', deactivateUserAccountController);
-
-// Register user
-router.post('/users/register', registerUserController);
-
-// Login user
-router.post('/users/login', loginUserController);
-
-// // Send reset password code (via email)
-// router.post('/users/reset-password/code', sendResetPasswordCodeController);
-
-// // Reset password with code
-// router.post('/users/reset-password', resetPasswordController);
+router.put('/:userId/deactivate', deactivateUserAccountController);
 
 export default router;
-
-
-// import { authenticate } from '../middleware/auth.middleware';
-// import { authorizeRoles } from '../middleware/role.middleware';
-
-// // Protected route: Only authenticated users can access their profile
-// router.get('/users/profile', authenticate, getUserProfileController);
-
-// // Admin-only route: Only users with the "ADMIN" role can access this
-// router.get('/admin/users', authenticate, authorizeRoles('ADMIN'), getAllUsersController);
-

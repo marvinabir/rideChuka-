@@ -15,12 +15,13 @@
     "@types/nodemailer": "^6.4.16",
     "@types/uuid": "^10.0.0",
     "@types/uuidv4": "^2.0.0",
+    "prisma": "^5.16.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.6.2"
   },
   "dependencies": {
-    "@prisma/client": "^5.20.0",
+    "@prisma/client": "^5.16.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -28,7 +29,6 @@
     "intasend-node": "^1.1.1",
     "jsonwebtoken": "^9.0.2",
     "nodemailer": "^6.9.15",
-    "prisma": "^5.20.0",
     "uuid": "^10.0.0"
   }
 }

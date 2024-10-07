@@ -12,7 +12,7 @@ CREATE TYPE "PaymentStatus" AS ENUM ('PENDING', 'COMPLETED', 'FAILED');
 
 -- CreateTable
 CREATE TABLE "User" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
@@ -28,7 +28,7 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Bike" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "model" TEXT NOT NULL,
     "status" "BikeStatus" NOT NULL DEFAULT 'AVAILABLE',
     "image" TEXT,
@@ -40,7 +40,7 @@ CREATE TABLE "Bike" (
 
 -- CreateTable
 CREATE TABLE "Event" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "date" TEXT NOT NULL,
@@ -56,10 +56,10 @@ CREATE TABLE "Event" (
 
 -- CreateTable
 CREATE TABLE "Booking" (
-    "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "bikeId" INTEGER,
-    "eventId" INTEGER,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "bikeId" TEXT,
+    "eventId" TEXT,
     "status" "BookingStatus" NOT NULL DEFAULT 'PENDING',
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -69,8 +69,8 @@ CREATE TABLE "Booking" (
 
 -- CreateTable
 CREATE TABLE "Ticket" (
-    "id" SERIAL NOT NULL,
-    "bookingId" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
+    "bookingId" TEXT NOT NULL,
     "ticketNumber" TEXT NOT NULL,
     "date" TEXT NOT NULL,
     "details" TEXT NOT NULL,
@@ -81,9 +81,9 @@ CREATE TABLE "Ticket" (
 
 -- CreateTable
 CREATE TABLE "Review" (
-    "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
-    "eventId" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
+    "eventId" TEXT NOT NULL,
     "rating" INTEGER NOT NULL,
     "comment" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -94,8 +94,8 @@ CREATE TABLE "Review" (
 
 -- CreateTable
 CREATE TABLE "Payment" (
-    "id" SERIAL NOT NULL,
-    "userId" INTEGER NOT NULL,
+    "id" TEXT NOT NULL,
+    "userId" TEXT NOT NULL,
     "amount" DOUBLE PRECISION NOT NULL,
     "status" "PaymentStatus" NOT NULL,
     "invoiceId" TEXT,

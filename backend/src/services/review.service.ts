@@ -1,9 +1,7 @@
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import prisma from "../config/database";
 
 // Get all reviews for an event
-export const getAllReviewsForEvent = async (eventId: number) => {
+export const getAllReviewsForEvent = async (eventId: string) => {
   return await prisma.review.findMany({
     where: { eventId },
     include: { user: true, event: true },
@@ -11,7 +9,7 @@ export const getAllReviewsForEvent = async (eventId: number) => {
 };
 
 // Add a review for an event
-export const addReviewForEvent = async (userId: number, eventId: number, rating: number, comment?: string) => {
+export const addReviewForEvent = async (userId: string, eventId: string, rating: number, comment?: string) => {
   return await prisma.review.create({
     data: {
       userId,
@@ -23,7 +21,7 @@ export const addReviewForEvent = async (userId: number, eventId: number, rating:
 };
 
 // Update a review
-export const updateReview = async (reviewId: number, rating: number, comment?: string) => {
+export const updateReview = async (reviewId: string, rating: number, comment?: string) => {
   return await prisma.review.update({
     where: { id: reviewId },
     data: { rating, comment },
@@ -31,7 +29,7 @@ export const updateReview = async (reviewId: number, rating: number, comment?: s
 };
 
 // Delete a review
-export const deleteReview = async (reviewId: number) => {
+export const deleteReview = async (reviewId: string) => {
   return await prisma.review.delete({
     where: { id: reviewId },
   });

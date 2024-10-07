@@ -24,7 +24,7 @@ export const getBikeByIdController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    const bike = await getBikeById(Number(id));
+    const bike = await getBikeById(String(id));
     res.status(200).json(bike);
   } catch (error: any) {
     res.status(404).json({ error: error.message });
@@ -56,7 +56,7 @@ export const updateBikeController = async (req: Request, res: Response) => {
   const { model, status, image } = req.body; // Destructure necessary fields
 
   try {
-    const updatedBike = await updateBike(Number(id), model, status, image);
+    const updatedBike = await updateBike(String(id), model, status, image);
     res.status(200).json(updatedBike);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -71,7 +71,7 @@ export const updateBikeController = async (req: Request, res: Response) => {
 export const softDeleteBikeController = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const bike = await softDeleteBike(Number(id));
+    const bike = await softDeleteBike(String(id));
     res.status(200).json(bike);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -86,7 +86,7 @@ export const softDeleteBikeController = async (req: Request, res: Response) => {
 export const deleteBikeController = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    await deleteBike(Number(id));
+    await deleteBike(String(id));
     res.status(204).send();
   } catch (error: any) {
     res.status(500).json({ error: error.message });

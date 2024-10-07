@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from "../config/database";
 import { BookingStatus } from '@prisma/client';
 
-const prisma = new PrismaClient();
 
 // Get all bookings
 export const getAllBookings = async () => {
@@ -11,10 +10,10 @@ export const getAllBookings = async () => {
 };
 
 // Get details of a specific booking by ID
-export const getBookingById = async (id: number) => {
+export const getBookingById = async (id: string) => {
   return await prisma.booking.findUnique({
     where: { id },
-    include: { user: true, bike: true, event: true },
+    include: { user: true, bike: true, event: true, ticket: true},
   });
 };
 
@@ -26,7 +25,7 @@ export const createBooking = async (data: any) => {
 };
 
 // Update booking status
-export const updateBookingStatus = async (id: number, status: BookingStatus) => {
+export const updateBookingStatus = async (id: string, status: BookingStatus) => {
   return await prisma.booking.update({
     where: { id },
     data: { status },
@@ -34,7 +33,7 @@ export const updateBookingStatus = async (id: number, status: BookingStatus) => 
 };
 
 // Cancel a booking
-export const cancelBooking = async (id: number) => {
+export const cancelBooking = async (id: string) => {
   return await prisma.booking.update({
     where: { id },
     data: { status: BookingStatus.CANCELLED },

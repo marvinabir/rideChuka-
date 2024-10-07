@@ -14,7 +14,7 @@ export const getAllEvents = async () => {
  * @param id 
  * @returns 
  */
-export const getEventById = async (id: number) => {
+export const getEventById = async (id: string) => {
   const event = await prisma.event.findUnique({
     where: { id },
   });
@@ -43,7 +43,7 @@ export const createEvent = async (data: Prisma.EventCreateInput) => {
  * @param data 
  * @returns 
  */
-export const updateEvent = async (id: number, data: Prisma.EventUpdateInput) => {
+export const updateEvent = async (id: string, data: Prisma.EventUpdateInput) => {
   const event = await prisma.event.update({
     where: { id },
     data,
@@ -61,7 +61,7 @@ export const updateEvent = async (id: number, data: Prisma.EventUpdateInput) => 
  * @param id 
  * @returns 
  */
-export const deleteEvent = async (id: number) => {
+export const deleteEvent = async (id: string) => {
   const event = await prisma.event.delete({
     where: { id },
   });

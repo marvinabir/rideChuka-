@@ -37,9 +37,9 @@ app.use('/events', eventRoutes);
 app.use('/api', bookingRoutes);
 app.use('/api', ticketRoutes);
 app.use('/api', reviewRoutes);
-app.use('/api', adminRoutes);
+app.use('/', adminRoutes);
 app.use('/api', paymentRoutes);
-app.use('/api', userRoutes);
+app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -1,10 +1,9 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from "../config/database";
 import { v4 as uuidv4 } from 'uuid'; // For generating unique ticket numbers
 
-const prisma = new PrismaClient();
 
 // Get ticket details by booking ID
-export const getTicketByBookingId = async (bookingId: number) => {
+export const getTicketByBookingId = async (bookingId: string) => {
   return await prisma.ticket.findUnique({
     where: { bookingId },
     include: { booking: { include: { user: true, bike: true, event: true } } },
@@ -12,7 +11,7 @@ export const getTicketByBookingId = async (bookingId: number) => {
 };
 
 // Generate a new ticket after booking confirmation
-export const generateTicket = async (bookingId: number, details: string) => {
+export const generateTicket = async (bookingId: string, details: string) => {
   const ticketNumber = uuidv4(); // Generate a unique ticket number
   const date = new Date().toISOString();
   

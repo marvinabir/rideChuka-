@@ -20,7 +20,7 @@ const getAllBikes = async () => {
  * @param id 
  * @returns 
  */
-const getBikeById = async (id: number) => {
+const getBikeById = async (id: string) => {
   return await prisma.bike.findUnique({
     where: { id },
     include: { bookings: true },
@@ -54,7 +54,7 @@ const addBike = async (model: string, status: string, image?: string) => {
  * @param image 
  * @returns 
  */
-const updateBike = async (id: number, model: string, status: string, image?: string) => {
+const updateBike = async (id: string, model: string, status: string, image?: string) => {
   const bikeStatus = status as BikeStatus; // Ensure status is cast to BikeStatus enum
 
   return await prisma.bike.update({
@@ -72,7 +72,7 @@ const updateBike = async (id: number, model: string, status: string, image?: str
  * @param id 
  * @returns 
  */
-const softDeleteBike = async (id: number) => {
+const softDeleteBike = async (id: string) => {
   return await prisma.bike.update({
     where: { id },
     data: {
@@ -86,7 +86,7 @@ const softDeleteBike = async (id: number) => {
  * @param id 
  * @returns 
  */
-const deleteBike = async (id: number) => {
+const deleteBike = async (id: string) => {
   return await prisma.bike.delete({
     where: { id },
   });

@@ -30,7 +30,7 @@ export const getEventByIdController = async (req: Request, res: Response) => {
   const { id } = req.params;
   
   try {
-    const event = await getEventById(Number(id));
+    const event = await getEventById(String(id));
     res.status(200).json(event);
   } catch (error: any) {
     res.status(404).json({ error: error.message });
@@ -62,7 +62,7 @@ export const updateEventController = async (req: Request, res: Response) => {
   const data = req.body;
 
   try {
-    const updatedEvent = await updateEvent(Number(id), data);
+    const updatedEvent = await updateEvent(String(id), data);
     res.status(200).json(updatedEvent);
   } catch (error: any) {
     res.status(400).json({ error: error.message });
@@ -78,7 +78,7 @@ export const deleteEventController = async (req: Request, res: Response) => {
   const { id } = req.params;
 
   try {
-    await deleteEvent(Number(id));
+    await deleteEvent(String(id));
     res.status(204).send();
   } catch (error: any) {
     res.status(400).json({ error: error.message });

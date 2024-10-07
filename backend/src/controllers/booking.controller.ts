@@ -15,7 +15,7 @@ export const getAllBookingsController = async (req: Request, res: Response) => {
 export const getBookingByIdController = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const booking = await getBookingById(Number(id));
+    const booking = await getBookingById(String(id));
     if (!booking) return res.status(404).json({ message: 'Booking not found' });
     res.status(200).json(booking);
   } catch (error: any) {
@@ -39,7 +39,7 @@ export const updateBookingStatusController = async (req: Request, res: Response)
   const { id } = req.params;
   const { status } = req.body;
   try {
-    const updatedBooking = await updateBookingStatus(Number(id), status);
+    const updatedBooking = await updateBookingStatus(String(id), status);
     res.status(200).json(updatedBooking);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -50,7 +50,7 @@ export const updateBookingStatusController = async (req: Request, res: Response)
 export const cancelBookingController = async (req: Request, res: Response) => {
   const { id } = req.params;
   try {
-    const cancelledBooking = await cancelBooking(Number(id));
+    const cancelledBooking = await cancelBooking(String(id));
     res.status(200).json(cancelledBooking);
   } catch (error: any) {
     res.status(500).json({ error: error.message });

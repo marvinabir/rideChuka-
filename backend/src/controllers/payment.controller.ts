@@ -9,7 +9,7 @@ import {
 export const getPaymentHistoryForUserController = async (req: Request, res: Response) => {
   const { userId } = req.params;
   try {
-    const payments = await getPaymentHistoryForUser(Number(userId));
+    const payments = await getPaymentHistoryForUser(String(userId));
     res.status(200).json(payments);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
@@ -21,7 +21,7 @@ export const triggerMpesaPaymentController = async (req: Request, res: Response)
   const { userId } = req.params;
   const { amount, phone_number } = req.body;
   try {
-    const paymentResponse = await triggerMpesaPayment(Number(userId), Number(amount), phone_number);
+    const paymentResponse = await triggerMpesaPayment(String(userId), Number(amount), phone_number);
     res.status(201).json(paymentResponse);
   } catch (error: any) {
     res.status(500).json({ error: error.message });
