@@ -34,7 +34,7 @@ app.use(express.json());
  */
 app.use('/bikes', bikeRoutes);
 app.use('/events', eventRoutes);
-app.use('/api', bookingRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use('/api', ticketRoutes);
 app.use('/api', reviewRoutes);
 app.use('/', adminRoutes);

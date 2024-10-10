@@ -1,10 +1,10 @@
 ### Get ticket details by booking ID
-GET http://localhost:3000/api/tickets/f7a542c6-b643-4b06-a62a-b1a1f5b2b956
+GET http://localhost:3000/api/tickets/f16cea45-cbdc-4bdc-b3be-bb53287d9c8c
 Content-Type: application/json
 
 
 ### Generate a new ticket after booking confirmation
-POST http://localhost:3000/api/tickets/7b9cabd0-7292-4aba-9476-8d076bb190a5
+POST http://localhost:3000/api/tickets/f16cea45-cbdc-4bdc-b3be-bb53287d9c8c
 Content-Type: application/json
 
 {

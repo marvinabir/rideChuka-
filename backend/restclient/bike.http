@@ -5,7 +5,7 @@ Content-Type: application/json
 
 
 ###Get Details of a Single Bike
-GET http://localhost:3000/bikes/9b568392-7681-477b-802a-6dd9a200e964
+GET http://localhost:3000/bikes/51610907-1e7e-437c-b400-c5cfeec4acd8
 Content-Type: application/json
 
 
@@ -14,7 +14,7 @@ POST http://localhost:3000/bikes
 Content-Type: application/json
 
 {
-  "model": "Speed Bike",
+  "model": "FUEL Bike",
   "status": "AVAILABLE",
   "image": "image-url"
 }
