@@ -4,7 +4,7 @@ Content-Type: application/json
 
 
 ### Generate a new ticket after booking confirmation
-POST http://localhost:3000/api/tickets/3526c0e9-764a-439f-96a5-afad1a513309
+POST http://localhost:3000/api/tickets/7b9cabd0-7292-4aba-9476-8d076bb190a5
 Content-Type: application/json
 
 {
